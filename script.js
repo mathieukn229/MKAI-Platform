@@ -1,3 +1,4 @@
+let userName = "";
 function sendMessage() {
 
     const input = document.getElementById("userInput");
