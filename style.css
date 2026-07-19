@@ -113,3 +113,43 @@ footer {
     color: #94a3b8;
     margin-left: 15px;
 }
+header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+}
+
+.logo {
+    order: 1;
+}
+
+.tagline {
+    order: 2;
+    margin: 0;
+    font-size: 14px;
+}
+
+nav {
+    order: 3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+nav a {
+    margin: 0;
+    font-size: 15px;
+}.chat-box {
+    width: 90%;
+}
+
+#userInput {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.chat-box button {
+    width: 100%;
+    margin-left: 0;
+}
