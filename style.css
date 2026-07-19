@@ -200,3 +200,23 @@ nav a {
         transform: translateY(0);
     }
     }
+/* Message utilisateur */
+#messages .user {
+    background: #2563eb;
+    color: white;
+    padding: 12px 15px;
+    border-radius: 18px 18px 3px 18px;
+    max-width: 75%;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+/* Message MKAI */
+#messages .bot {
+    background: #f1f5f9;
+    color: #111827;
+    padding: 12px 15px;
+    border-radius: 18px 18px 18px 3px;
+    max-width: 75%;
+    align-self: flex-start;
+    }
