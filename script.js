@@ -32,9 +32,9 @@ function sendMessage() {
         let message = userMessage.toLowerCase();
 
         if (message.includes("bonjour") || message.includes("salut")) {
-            response = "🤖 Bonjour Mathieu ! Bienvenue sur MKAI Platform 🚀 Comment puis-je t'aider aujourd'hui ?";
-        }
-
+            response = userName 
+? "🤖 Bonjour " + userName + " ! Ravi de te revoir sur MKAI Platform 🚀"
+: "🤖 Bonjour ! Bienvenue sur MKAI Platform 🚀 Comment puis-je t'aider aujourd'hui ?";
         else if (message.includes("business")) {
             response = "🤖 Je peux t'aider à trouver des idées de business, créer des produits digitaux et développer une stratégie.";
         }
