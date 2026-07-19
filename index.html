@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,13 @@
 
 <body>
 
-<header><p class="tagline">L'intelligence artificielle au service de vos idées</p>
+<header>
+    <p class="tagline">L'intelligence artificielle au service de vos idées</p>
+
     <div class="logo">
-    <span>⚡</span> MKAI
+        <span>⚡</span> MKAI
     </div>
+
     <nav>
         <a href="#">Accueil</a>
         <a href="#">Chat IA</a>
@@ -31,10 +35,11 @@
     </p>
 
     <button onclick="sendMessage()">
-    Discuter avec MKAI
+        Discuter avec MKAI
     </button>
 
 </section>
+
 
 <section class="chat-section">
 
@@ -59,62 +64,62 @@
 
     </div>
 
-    </section>
+</section>
+
+
 <section class="services">
 
     <div class="card">
-        💬
-        <h2>Chat IA</h2>
-        <p>Discutez avec votre assistant intelligent.</p>
+        <h3>💬 Chat IA</h3>
+        <p>Discute avec ton assistant intelligent.</p>
     </div>
 
-<div class="services">
 
     <div class="card">
         <h3>🧠 Assistant Business</h3>
         <p>Trouve des idées de business, stratégies et plans d'action.</p>
+
         <button onclick="startService('business')">
             Commencer
         </button>
     </div>
 
+
     <div class="card">
         <h3>✍️ Créateur de contenu</h3>
         <p>Crée des posts, scripts vidéos et idées pour tes réseaux.</p>
+
         <button onclick="startService('contenu')">
             Commencer
         </button>
     </div>
 
+
     <div class="card">
         <h3>📚 MKAI Academy</h3>
-        <p>Apprends l'IA et développe tes compétences.</p>
+        <p>Apprends l'intelligence artificielle étape par étape.</p>
+
         <button onclick="startService('ia')">
             Commencer
         </button>
     </div>
 
+
     <div class="card">
         <h3>🚀 Créateur de projet</h3>
         <p>Transforme tes idées en projets structurés.</p>
+
         <button onclick="startService('projet')">
             Commencer
         </button>
     </div>
 
-</div>
-    <div class="card">
-        ✍️
-        <h2>Créateur</h2>
-        <p>Créez du contenu rapidement avec l'IA.</p>
-    </div>
-
 
     <div class="card">
-        🎨
-        <h2>Images IA</h2>
-        <p>Générez des images professionnelles.</p>
+        <h3>🎨 Images IA</h3>
+        <p>Crée des images professionnelles avec l'IA.</p>
     </div>
+
 
 </section>
 
@@ -125,53 +130,6 @@
 
 
 <script src="script.js"></script>
+
 </body>
-</html> 
-.chat-section {
-    text-align: center;
-    padding: 50px 20px;
-}
-
-
-.chat-section h2 {
-    font-size: 32px;
-    margin-bottom: 25px;
-}
-
-
-.chat-box {
-    max-width: 500px;
-    margin: auto;
-    background: #111827;
-    padding: 25px;
-    border-radius: 20px;
-}
-
-
-#messages {
-    min-height: 120px;
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-
-.bot {
-    background: #1e293b;
-    padding: 15px;
-    border-radius: 15px;
-}
-
-
-#userInput {
-    width: 70%;
-    padding: 12px;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-}
-
-
-.chat-box button {
-    padding: 12px 20px;
-    margin-left: 5px;
-}
+    </html>
