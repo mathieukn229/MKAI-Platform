@@ -10,9 +10,10 @@ function sendMessage() {
     }
 
     messages.innerHTML += `
-        <p style="background:#2563eb;padding:10px;border-radius:15px;">
+    <p class="user">
         👤 ${userMessage}
-        </p>
+    </p>
+`;
     `;
 
     input.value = "";
