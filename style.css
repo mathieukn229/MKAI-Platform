@@ -153,3 +153,50 @@ nav a {
     width: 100%;
     margin-left: 0;
 }
+/* Style des messages MKAI */
+
+#messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* Message utilisateur */
+#messages p:not(.bot) {
+    background: #2563eb;
+    color: white;
+    padding: 12px 15px;
+    border-radius: 18px 18px 3px 18px;
+    max-width: 75%;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+/* Message MKAI */
+#messages .bot {
+    background: #f1f5f9;
+    color: #111827;
+    padding: 12px 15px;
+    border-radius: 18px 18px 18px 3px;
+    max-width: 75%;
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+/* Animation légère */
+.bot {
+    animation: apparition 0.3s ease;
+}
+
+@keyframes apparition {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
