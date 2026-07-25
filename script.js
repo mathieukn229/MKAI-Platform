@@ -1,17 +1,15 @@
 let userName = "";
 
-function sendMessage() {
+async function sendMessage() {
 
     const input = document.getElementById("userInput");
     const messages = document.getElementById("messages");
 
     const userMessage = input.value.trim();
 
-    if (userMessage === "") {
-        return;
-    }
+    if (userMessage === "") return;
 
-    // Message utilisateur
+    // Afficher le message de l'utilisateur
     messages.innerHTML += `
         <p class="user">
             👤 ${userMessage}
@@ -19,10 +17,9 @@ function sendMessage() {
     `;
 
     messages.scrollTop = messages.scrollHeight;
-
     input.value = "";
 
-    // Animation "MKAI réfléchit..."
+    // Message d'attente
     const thinking = document.createElement("p");
     thinking.className = "bot";
     thinking.innerHTML = "🤖 MKAI réfléchit...";
@@ -30,94 +27,96 @@ function sendMessage() {
 
     messages.scrollTop = messages.scrollHeight;
 
-    setTimeout(() => {
+    try {
+
+        const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: userMessage,
+                userName: userName
+            })
+        });
+
+        const data = await response.json();
 
         thinking.remove();
 
-        let response = "🤖 Je suis MKAI. Je peux t'aider avec le business, l'IA, la création de contenu et tes projets.";
+        if (data.reply) {
 
-        const message = userMessage.toLowerCase();
+            if (
+                userMessage.toLowerCase().startsWith("je m'appelle")
+            ) {
 
-        if (message.includes("je m'appelle")) {
+                userName = userMessage
+                    .replace(/je m'appelle/i, "")
+                    .trim();
 
-            userName = userMessage
-                .replace(/je m'appelle/i, "")
-                .trim();
-
-            response = "🤖 Enchanté " + userName + " ! Je m'en souviendrai pendant cette discussion.";
-
-        }
-
-        else if (message.includes("bonjour") || message.includes("salut")) {
-
-            if (userName !== "") {
-                response = "🤖 Bonjour " + userName + " ! Heureux de te revoir sur MKAI 🚀";
-            } else {
-                response = "🤖 Bonjour ! Bienvenue sur MKAI Platform 🚀";
             }
 
-        }
+            messages.innerHTML += `
+                <p class="bot">
+                    🤖 ${data.reply}
+                </p>
+            `;
 
-        else if (message.includes("business")) {
+        } else {
 
-            response = "🤖 Je peux t'aider à trouver une idée de business, créer un produit digital et élaborer une stratégie de vente.";
-
-        }
-
-        else if (message.includes("ia") || message.includes("intelligence artificielle")) {
-
-            response = "🤖 L'intelligence artificielle permet d'automatiser des tâches, créer du contenu et développer des projets plus rapidement.";
-
-        }
-
-        else if (
-            message.includes("contenu") ||
-            message.includes("facebook") ||
-            message.includes("tiktok")
-        ) {
-
-            response = "🤖 Je peux créer des publications Facebook, des scripts TikTok, des légendes et des idées de contenu.";
+            messages.innerHTML += `
+                <p class="bot">
+                    ❌ Aucune réponse reçue.
+                </p>
+            `;
 
         }
 
-        else if (message.includes("projet")) {
+    } catch (error) {
 
-            response = "🤖 Décris ton projet et je vais t'aider à le développer étape par étape.";
-
-        }
+        thinking.remove();
 
         messages.innerHTML += `
             <p class="bot">
-                ${response}
+                ❌ Erreur de connexion avec MKAI.
             </p>
         `;
 
-        messages.scrollTop = messages.scrollHeight;
+        console.error(error);
 
-    }, 1500);
+    }
+
+    messages.scrollTop = messages.scrollHeight;
 
 }
 
 
 // Boutons des services
+
 function startService(service) {
 
     const input = document.getElementById("userInput");
 
-    if (service === "business") {
-        input.value = "Aide-moi à trouver une idée de business";
-    }
+    switch (service) {
 
-    else if (service === "contenu") {
-        input.value = "Aide-moi à créer du contenu";
-    }
+        case "business":
+            input.value = "Aide-moi à trouver une idée de business";
+            break;
 
-    else if (service === "ia") {
-        input.value = "Apprends-moi l'intelligence artificielle";
-    }
+        case "contenu":
+            input.value = "Aide-moi à créer du contenu";
+            break;
 
-    else if (service === "projet") {
-        input.value = "Aide-moi à développer mon projet";
+        case "ia":
+            input.value = "Apprends-moi l'intelligence artificielle";
+            break;
+
+        case "projet":
+            input.value = "Aide-moi à développer mon projet";
+            break;
+
+        default:
+            input.value = "";
     }
 
     sendMessage();
@@ -125,11 +124,25 @@ function startService(service) {
 }
 
 
-// Envoyer avec la touche Entrée
-document.getElementById("userInput").addEventListener("keypress", function(event) {
+// Envoyer avec Entrée
 
-    if (event.key === "Enter") {
-        sendMessage();
+document.addEventListener("DOMContentLoaded", () => {
+
+    const input = document.getElementById("userInput");
+
+    if (input) {
+
+        input.addEventListener("keypress", function (event) {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+                sendMessage();
+
+            }
+
+        });
+
     }
 
-});
+}); 
